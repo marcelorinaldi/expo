@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Button, Text, TextInput } from 'react-native';
+import { View, Button, Text, TextInput, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 import style from './styles/style.js'
@@ -47,26 +47,26 @@ function Home({ navigation }) {
     <View style={styles.principal}>
       <View style={styles.secundario}>
         <Button
-          title="Sign in"
-          onPress={() => navigation.navigate('Sign in')}
+          title="Pix"
+          onPress={() => navigation.navigate('Comprar')}
         />
       </View>
       <View style={styles.secundario}>
         <Button
-          title="Sign in"
-          onPress={() => navigation.navigate('Sign in')}
+          title="Cartão"
+          onPress={() => navigation.navigate('Comprar')}
         />
       </View>
       <View style={styles.secundario}>
         <Button
-          title="Sign in"
-          onPress={() => navigation.navigate('Sign in')}
+          title="Paypal"
+          onPress={() => navigation.navigate('Comprar')}
         />
       </View>
       <View style={styles.secundario}>
         <Button
-          title="Sign in"
-          onPress={() => navigation.navigate('Sign in')}
+          title="Dinheiro"
+          onPress={() => navigation.navigate('Comprar')}
         />
       </View>
     </View>
@@ -111,6 +111,60 @@ function Signin({ navigation }) {
   );
 }
 
+function Comprar({ navigation }) {
+  const [forma, pagar, onChangeText] = React.useState('');
+  return (
+    <View style={styles.contcomprar}>
+      <View style={styles.comprar}>
+        <Image source={require('./assets/img/g1.png')} />
+      </View>
+      <View style={styles.comprar}>
+        <Text>    </Text>
+        <TextInput
+          onChangeText={onChangeText}
+          value={pagar}
+          placeholder="Total a Pagar"
+        />
+        <Text>    </Text>
+        <TextInput
+          onChangeText={onChangeText}
+          value={forma}
+          placeholder="Pagamento"
+        />
+        <Text>    </Text>
+        <Button
+          title="Comprar"
+          onPress={() => navigation.navigate('Finalizar')}
+        />
+        <Text>    </Text>
+        <Button
+          title="Forma de pagamento"
+          onPress={() => navigation.navigate('Home')}
+        />
+      </View>
+
+
+    </View>
+  );
+}
+
+function Finalizar({ navigation }) {
+  return (
+    <View style={styles.finalizar}>
+      <Image source={require('./assets/img/g1.png')} />
+      <View style={styles.secundario}>
+        <Text>    </Text>
+        <Text>Obrigado pela Compra! Volte Sempre!</Text>
+        <Text>    </Text>
+        <Button
+          title="Sair"
+          onPress={() => navigation.navigate('Login')}
+        />
+      </View>
+    </View>
+  );
+}
+
 
 const Stack = createStackNavigator();
 
@@ -141,19 +195,25 @@ function MyStack() {
           headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
         }}
       />
+      <Stack.Screen
+        name="Comprar"
+        component={Comprar}
+        options={{
+          title: 'Comprar',
+          headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+        }}
+      />
+      <Stack.Screen
+        name="Finalizar"
+        component={Finalizar}
+        options={{
+          title: 'Finalizar',
+          headerStyleInterpolator: HeaderStyleInterpolators.forUIKit,
+        }}
+      />
     </Stack.Navigator>
   );
 }
-/*
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Itajuba234</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
-*/
 
 export default function App() {
   return (
@@ -176,9 +236,38 @@ const styles = StyleSheet.create({
   },
 
   secundario: {
-    borderColor: 'black',
-    borderWidth: 1,
     width: '40%',
-  }
+    marginTop: 10,
+    marginRight: 10,
+    marginLeft: 10,
+  },
+
+  contcomprar: {
+    //flex: 1,
+    marginTop: '10%',
+    justifyContent: 'top',
+    alignItems: 'center',
+    marginRight: 30,
+    height: 250,
+    width: '75%',
+  },
+
+  comprar: {
+    width: '100%',
+    marginLeft: '30%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  finalizar: {
+    flex: 1,
+    marginTop: '20%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 250,
+    width: '100%',
+  },
 
 });
