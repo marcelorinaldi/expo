@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { View, Button, Text, TextInput, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { StyleSheet } from 'react-native';
-import style from './styles/style.js'
+import styles from './style/style.js'
 
 import {
   createStackNavigator,
@@ -15,7 +14,7 @@ function Login({ navigation }) {
   const [email, password, onChangeText] = React.useState('');
   return (
     <><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Image style={{height: 100, width: 150}} source={require('./assets/img/gelo.gif')} />
+      <Image style={styles.image} source={require('./assets/img/gelo.gif')} />
       <Text>    </Text>
       <TextInput
         onChangeText={onChangeText}
@@ -36,7 +35,7 @@ function Login({ navigation }) {
         onPress={() => navigation.navigate('Sign in')} />
     </View>
       <View style={styles.rodape}>
-        <Text>Contato</Text>
+          <Text>Contato</Text>
       </View></>
   );
 }
@@ -74,7 +73,7 @@ function Signin({ navigation }) {
   const [fname, lname, email, password, onChangeText] = React.useState('');
   return (
     <><View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Image style={{height: 100, width: 150}} source={require('./assets/img/gelo.gif')} />
+      <Image style={styles.image} source={require('./assets/img/gelo.gif')} />
       <Text>    </Text>
       <TextInput
         onChangeText={onChangeText}
@@ -217,60 +216,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  principal: {
-    flex: 1,
-    marginTop: '60%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 250,
-    width: '100%',
-  },
-
-  secundario: {
-    width: '40%',
-    marginTop: 10,
-    marginRight: 10,
-    marginLeft: 10,
-  },
-
-  contcomprar: {
-    //flex: 1,
-    marginTop: '10%',
-    justifyContent: 'top',
-    alignItems: 'center',
-    marginRight: 30,
-    height: 250,
-    width: '75%',
-  },
-
-  comprar: {
-    width: '100%',
-    marginLeft: '30%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-
-  finalizar: {
-    flex: 1,
-    marginTop: '20%',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 250,
-    width: '100%',
-  },
-
-  rodape: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    border: 1,
-    height: 30,
-    backgroundColor: 'lightblue',
-  }
-
-});
